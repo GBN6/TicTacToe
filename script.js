@@ -35,7 +35,7 @@ const displayGameController = (() => {
 
     gameTile.forEach((tile) =>
      tile.addEventListener('click', (e) => {
-        if (e.target.textContent !== "") return;
+        if (game.getGameOver() || e.target.textContent !== "") return;
         game.playRound(parseInt(e.target.dataset.index));
         updateBoard();
     })
@@ -62,17 +62,13 @@ const game = (() => {
             gameOver = true;
             return;    
         }
-
         round++;
-    }
+    };
 
     const getCurrentPlayerMarker = () => {
         return round % 2 === 1 ? playerX.getMarker() : playerO.getMarker();
       };
-      if (round === 9) {
-        gameOver = true;
-        return;
-      }
+
     const winner = (tileIndex) => {
         const win = [
             [0,1,2],
@@ -85,19 +81,23 @@ const game = (() => {
             [2,4,6],
         ];
 
-        const checkWinner = win.filter((combo) => combo.includes(tileIndex))
-                                .some((possibleCombo) => possibleCombo.every((index) => gameBoard.getTile(index) === getCurrentPlayerMarker()));
+        const checkWinner = win.filter((combo) => 
+        combo.includes(tileIndex)).some((possibleCombo) => 
+        possibleCombo.every((index) => 
+        gameBoard.getTile(index) === getCurrentPlayerMarker()));
+
+        console.log(checkWinner);
         return checkWinner;
-    }
+    };
 
     const getGameOver = () => {
         return gameOver;
-    }
+    };
 
     const reset = () => {
         round = 1;
         gameOver = false;
-    }
+    };
 
     return {playRound, getGameOver, reset};
 
