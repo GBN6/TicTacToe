@@ -38,7 +38,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1rem, 3.5vw, 4.5rem);
+  text-shadow: 4px 4px var(--bg-color) ;
   font-weight: 900;
 }
 
@@ -68,9 +69,13 @@ body {
   font-size: clamp(1rem, 20vw, 7rem);
   color: var(--bg-white);
 }
+
+.main .gameboard .game-tile:hover {
+  background-color: #444444;
+}
 .player-turn {
-  margin-top: 20px;
-  font-size: 1.5rem;
+  margin-top: 40px;
+  font-size: clamp(1rem, 20vw, 2rem);
   color: var(--bg-white);
 }
 

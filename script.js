@@ -31,7 +31,7 @@ const gameBoard = (() => {
 
 const displayGameController = (() => {
     const gameTile = document.querySelectorAll('.game-tile');
-    const playerTurn = document.querySelector('.player-turn');
+    const playerMessage = document.querySelector('.player-turn');
 
     gameTile.forEach((tile) =>
      tile.addEventListener('click', (e) => {
@@ -46,6 +46,12 @@ const displayGameController = (() => {
             gameTile[i].textContent = gameBoard.getTile(i);
         }
       };
+    
+
+    const displayMessage = (text) => {
+        playerMessage.textContent = text;
+    };
+    return {displayMessage};
 
 })();
 
@@ -62,7 +68,14 @@ const game = (() => {
             gameOver = true;
             return;    
         }
+        if (round === 9)
+        {
+            gameOver = true;
+            return;
+        }
+        
         round++;
+        displayGameController.displayMessage(`Player ${getCurrentPlayerMarker()}'s turn`);
     };
 
     const getCurrentPlayerMarker = () => {
