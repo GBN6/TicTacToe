@@ -57,6 +57,12 @@ const game = (() => {
 
     const playRound = (tileIndex) => {
         gameBoard.setTile(tileIndex, getCurrentPlayerMarker());
+        if (winner(tileIndex))
+        {
+            gameOver = true;
+            return;    
+        }
+
         round++;
     }
 
@@ -67,35 +73,32 @@ const game = (() => {
         gameOver = true;
         return;
       }
+    const winner = (tileIndex) => {
+        const win = [
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+            [0,4,8],
+            [2,4,6],
+        ];
 
-    return {playRound};
+        const checkWinner = win.filter((combo) => combo.includes(tileIndex))
+                                .some((possibleCombo) => possibleCombo.every((index) => gameBoard.getTile(index) === getCurrentPlayerMarker()));
+        return checkWinner;
+    }
+
+    const getGameOver = () => {
+        return gameOver;
+    }
+
+    const reset = () => {
+        round = 1;
+        gameOver = false;
+    }
+
+    return {playRound, getGameOver, reset};
 
 })();
-// gameBoard.renderBoard;
-
-
-// const jeff = player('jeff', 'x')
-// console.log(jeff.marker);
-
-// const gameTile = document.querySelectorAll('.game-tile');
-// const playerTurn = document.querySelector('.player-turn');
-// let flagMarker = 0;
-// playerTurn.textContent = 'X\'s turn'; 
-// const placeMarker = (e) => {
-//     if (e.target.textContent === '')
-//     {
-//         if (flagMarker === 0)
-//         {
-//             e.target.textContent = 'X';
-//             playerTurn.textContent = 'O\'s turn';
-//             flagMarker = 1;
-//         }
-//         else if (flagMarker === 1)
-//         {
-//             e.target.textContent = 'O';
-//             playerTurn.textContent = 'X\'s turn';
-//             flagMarker = 0;
-//         }
-//     }
-// }
-// gameTile.forEach((item) => item.addEventListener('click', placeMarker))
