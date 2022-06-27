@@ -32,6 +32,7 @@ const gameBoard = (() => {
 const displayGameController = (() => {
     const gameTile = document.querySelectorAll('.game-tile');
     const playerMessage = document.querySelector('.player-turn');
+    const buttonReset = document.querySelector('.btn-restart')
 
     gameTile.forEach((tile) =>
      tile.addEventListener('click', (e) => {
@@ -40,6 +41,13 @@ const displayGameController = (() => {
         updateBoard();
     })
     )
+
+    buttonReset.addEventListener('click', (e) => {
+        gameBoard.reset();
+        game.reset();
+        updateBoard();
+        displayMessage('Player X\'s turn');
+    })
 
     const updateBoard = () => {
         for (let i = 0; i < gameTile.length; i++) {
