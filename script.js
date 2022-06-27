@@ -38,6 +38,7 @@ const displayGameController = (() => {
      tile.addEventListener('click', (e) => {
         if (game.getGameOver() || e.target.textContent !== "") return;
         game.playRound(parseInt(e.target.dataset.index));
+        console.log(e.target.dataset.index);
         updateBoard();
     })
     )
