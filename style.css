@@ -29,11 +29,11 @@ body {
   font-family: sans-serif;
   margin-bottom: 50px;
   background-color: #171717;
-  height: 80%;
+  height: 90%;
 }
 
 .header {
-  padding-top: 10%;
+  padding-top: 7%;
   color: #EDEDED;
   display: flex;
   align-items: center;
@@ -74,11 +74,22 @@ body {
   background-color: #444444;
 }
 .player-turn {
-  margin-top: 40px;
+  margin-top: 20px;
   font-size: clamp(1rem, 20vw, 2rem);
   color: var(--bg-white);
 }
-
+.button-container {
+  margin-top: 20px;
+}
+.button-container .btn-restart {
+  border: none;
+  font-size: clamp(1rem, 20vw, 2rem);
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #DA0037;
+  color: #EDEDED;
+  font-weight: 900;
+}
 .footer {
   position: absolute;
   bottom: 0;

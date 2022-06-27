@@ -46,12 +46,20 @@ const displayGameController = (() => {
             gameTile[i].textContent = gameBoard.getTile(i);
         }
       };
+
+    const setResultMessage = (result) => {
+        if (result === "Draw") {
+          displayMessage("It's a draw!");
+        } else {
+          displayMessage(`Player ${result} has won!`);
+        }
+      };
     
 
     const displayMessage = (text) => {
         playerMessage.textContent = text;
     };
-    return {displayMessage};
+    return {displayMessage, setResultMessage};
 
 })();
 
@@ -65,11 +73,13 @@ const game = (() => {
         gameBoard.setTile(tileIndex, getCurrentPlayerMarker());
         if (winner(tileIndex))
         {
+            displayGameController.setResultMessage(getCurrentPlayerMarker());
             gameOver = true;
             return;    
         }
         if (round === 9)
         {
+            displayGameController.setResultMessage('Draw');
             gameOver = true;
             return;
         }
