@@ -80,6 +80,7 @@ body {
 }
 .button-container {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 .button-container .btn-restart {
   border: none;
@@ -89,6 +90,10 @@ body {
   background-color: #DA0037;
   color: #EDEDED;
   font-weight: 900;
+}
+.button-container .btn-restart:hover {
+  filter: brightness(80%);
+  
 }
 .footer {
   position: absolute;
