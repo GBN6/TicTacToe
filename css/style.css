@@ -163,6 +163,7 @@ body {
   width: 100%;
   padding: 15px;
   color: #EDEDED;
+  font-size: 1.3rem;
 }
 
 
@@ -218,7 +219,9 @@ body {
 
 #start-game {
   margin-left: 16px;
-  background-color: var(--bg-color)
+  background-color: var(--bg-color);
+  color: var(--bg-white);
+  font-weight: 900;
 }
 
 #start-game:hover {
