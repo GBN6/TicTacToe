@@ -1,3 +1,4 @@
+// NO PLAYER SELECTION - SIMPLE TIC TAC TOE
 const Player = (marker) => {
     this.marker = marker;
   
