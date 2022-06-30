@@ -16,7 +16,7 @@
 html {
   /* footer support */
   position: relative;
-  height: 100%;
+  height: 100vh;
 }
 
 .container {
@@ -28,7 +28,7 @@ html {
 body {
   margin-bottom: 50px;
   background-color: #171717;
-  height: 90%;
+  height: 100vh;
 }
 
 .header {
@@ -43,17 +43,21 @@ body {
 }
 
 .main {
-  height: 80%;
-  display: flex;
-  align-items: center;
+  height: 90vh;
+  display: none;
   justify-content: center;
-  flex-direction: column;
+  grid-template-columns: auto 344px auto;
+  grid-template-rows: 344px auto;
+  grid-template-areas:
+    "player-one board player-two"
+    ". controls .";
 }
 
 .main .gameboard {
+  grid-area: board;
   background-color: #DA0037;
-  width: min(480px, 100%);
-  height: min(480px, 100%);
+  width: 360px;
+  height: 360px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -65,7 +69,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(1rem, 20vw, 7rem);
+  font-size: clamp(1rem, 20vw, 4rem);
   color: var(--bg-white);
 }
 
@@ -94,6 +98,61 @@ body {
   filter: brightness(80%);
   
 }
+
+.player-one-section,
+.player-two-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-dark);
+  color: var(--bg-white);
+  padding: 16px;
+  box-shadow: 0 4px 8px 0 var(--bg-color),0 6px 20px 0 var(--bg-color);
+}
+
+.player-one-section {
+  grid-area: player-one;
+  margin-right: 32px;
+}
+
+.player-two-section {
+  grid-area: player-two;
+  margin-left: 32px;
+}
+
+.player-section-name {
+  margin: 0 0 16px;
+}
+
+.player-section-appearance,
+.player-section-mark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  margin-bottom: 16px;
+  font-size: 50px;
+  border: solid 6px var(--bg-white);
+}
+
+.player-one-section .player-section-appearance,
+.player-one-section .player-section-mark {
+  background-color: var(--bg-color);
+}
+
+.player-two-section .player-section-appearance,
+.player-two-section .player-section-mark {
+  background-color: var(--bg-grey);
+}
+.controls {
+  grid-area: controls;
+  text-align: center;
+  margin-top: 32px;
+}
+
+
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -314,7 +373,7 @@ body {
 
 .mark:hover,
 .appearance:hover {
-  background-color: var(--hover-yellow);
+  background-color: var(--bg-color);
   border-color: var(--purple);
   transition: all .3s;
 }
@@ -334,10 +393,10 @@ body {
 .player-one-error,
 .player-two-error {
   display: none;
-  background-color: var(--red);
+  background-color: red;
   margin: 16px 0 0;
   padding: 4px 6px;
-  color: var(--white);
+  color: var(--bg-white);
 }
 
 .player-two-human {
@@ -358,4 +417,38 @@ body {
 }
 p {
   margin: 10px 0px;
+}
+
+@media screen and (max-width: 833px) {
+  .custom-player:first-child {
+    border-right: none;
+    border-bottom: solid 1px var(--bg-color);
+    padding-bottom: 16px;
+  }
+
+  .custom-player:last-child {
+    padding-top: 16px;
+    padding-left: 0;
+  }
+
+  .main {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "board board"
+      "player-one player-two"
+      "controls controls";
+  }
+
+  .player-one-section {
+    grid-area: player-one;
+    margin-right: 32px;
+    margin-top: 32px;
+  }
+
+  .player-two-section {
+    grid-area: player-two;
+    margin-top: 32px;
+    margin-left: 0;
+  }
 }
