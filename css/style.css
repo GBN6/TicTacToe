@@ -16,7 +16,7 @@
 html {
   /* footer support */
   position: relative;
-  height: 100vh;
+  min-height: 100%;
 }
 
 .container {
@@ -28,7 +28,6 @@ html {
 body {
   margin-bottom: 50px;
   background-color: #171717;
-  height: 100vh;
 }
 
 .header {
@@ -43,7 +42,6 @@ body {
 }
 
 .main {
-  height: 90vh;
   display: none;
   justify-content: center;
   grid-template-columns: auto 344px auto;
@@ -418,6 +416,7 @@ body {
 p {
   margin: 10px 0px;
 }
+
 
 @media screen and (max-width: 833px) {
   .custom-player:first-child {
