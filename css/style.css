@@ -54,13 +54,14 @@ body {
 .main .gameboard {
   grid-area: board;
   background-color: #DA0037;
-  width: 360px;
-  height: 360px;
+  width: 330px;
+  height: 330px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
-  margin-top: 20px;
+  align-self: center;
+  justify-self: center;
 }
 .main .gameboard .game-tile {
   background-color: #171717;
