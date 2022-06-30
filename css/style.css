@@ -337,7 +337,7 @@ body {
   border: solid 2px rgba(0,0,0,.15);
   border-radius: 0;
   font-size: 22px;
-  color: var(--purple);
+  color: var(--bg-white);
   text-align: center;
   outline: none;
   transition: all .3s;
