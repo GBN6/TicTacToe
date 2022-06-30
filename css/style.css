@@ -1,0 +1,454 @@
+:root {
+  --bg-dark: #171717;
+  --bg-grey: #444444;
+  --bg-color: rgb(218, 0, 55);
+  --bg-white: #EDEDED;
+  --shadow: rgba(0, 0, 0, 0.16) 1px 2px 4px;
+}
+
+/* basic reset */
+*, *::before, *::after{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* footer support */
+  position: relative;
+  min-height: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+body {
+  margin-bottom: 50px;
+  background-color: #171717;
+}
+
+.header {
+  padding-top: 7%;
+  color: #EDEDED;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1rem, 3.5vw, 4.5rem);
+  text-shadow: 4px 4px var(--bg-color) ;
+  font-weight: 900;
+}
+
+.main {
+  display: none;
+  justify-content: center;
+  grid-template-columns: auto 344px auto;
+  grid-template-rows: 344px auto;
+  grid-template-areas:
+    "player-one board player-two"
+    ". controls .";
+}
+
+.main .gameboard {
+  grid-area: board;
+  background-color: #DA0037;
+  width: 330px;
+  height: 330px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  align-self: center;
+  justify-self: center;
+}
+.main .gameboard .game-tile {
+  background-color: #171717;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1rem, 20vw, 4rem);
+  color: var(--bg-white);
+}
+
+.main .gameboard .game-tile:hover {
+  background-color: #444444;
+}
+.player-turn {
+  margin-top: 20px;
+  font-size: clamp(1rem, 20vw, 2rem);
+  color: var(--bg-white);
+}
+.button-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.button-container .btn-restart {
+  border: none;
+  font-size: clamp(1rem, 20vw, 2rem);
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #DA0037;
+  color: #EDEDED;
+  font-weight: 900;
+}
+.button-container .btn-restart:hover {
+  filter: brightness(80%);
+  
+}
+
+.player-one-section,
+.player-two-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-dark);
+  color: var(--bg-white);
+  padding: 16px;
+  box-shadow: 0 4px 8px 0 var(--bg-color),0 6px 20px 0 var(--bg-color);
+}
+
+.player-one-section {
+  grid-area: player-one;
+  margin-right: 32px;
+}
+
+.player-two-section {
+  grid-area: player-two;
+  margin-left: 32px;
+}
+
+.player-section-name {
+  margin: 0 0 16px;
+}
+
+.player-section-appearance,
+.player-section-mark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  margin-bottom: 16px;
+  font-size: 50px;
+  border: solid 6px var(--bg-white);
+}
+
+.player-one-section .player-section-appearance,
+.player-one-section .player-section-mark {
+  background-color: var(--bg-color);
+}
+
+.player-two-section .player-section-appearance,
+.player-two-section .player-section-mark {
+  background-color: var(--bg-grey);
+}
+.controls {
+  grid-area: controls;
+  text-align: center;
+  margin-top: 32px;
+}
+
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px;
+  color: #EDEDED;
+}
+
+
+/* MODAL  */
+
+.modal {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  overflow: auto;
+  z-index: 1;
+}
+
+.modal-container {
+  max-width: 800px;
+  margin: 200px auto 50px;
+  padding: 16px;
+  background-color: var(--bg-grey);
+  border: solid 1px rgb(218, 0, 55);
+  box-shadow: 0 4px 8px 0 rgb(218, 0, 55),0 6px 20px 0 rgb(218, 0, 55);
+  animation-duration: .3s;
+  color: var(--bg-white);
+}
+
+.modal h2 {
+  margin: 0;
+  text-align: center;
+}
+
+.sep {
+  margin: 16px 0;
+  border-bottom: solid 1px rgb(218, 0, 55);
+}
+
+#start-game,
+#reset,
+#new-game,
+#restart {
+  padding: 8px 12px;
+  border: solid 1px rgba(0,0,0,.15);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all .3s;
+}
+
+.modal .buttons-center {
+  text-align: center;
+}
+
+#start-game {
+  margin-left: 16px;
+  background-color: var(--bg-color)
+}
+
+#start-game:hover {
+  filter: brightness(80%);
+  transition: all .3s;
+}
+
+#reset,
+#new-game,
+#restart {
+  background-color: var(--bg-white);
+  color: var(--bg-dark);
+}
+
+#reset:hover,
+#new-game:hover,
+#restart:hover {
+  filter: brightness(80%);
+  transition: all .3s;
+}
+
+/* Characters creation */
+.create-players {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 16px 0;
+}
+
+.custom-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 380px;
+}
+
+.custom-player h3 {
+  margin: auto;
+}
+
+.custom-player:first-child {
+  border-right: solid 1px var(--bg-color);
+}
+
+.player-one-heading {
+  display: flex;
+  width: 160px;
+  height: 50px;
+  padding: 0 16px;
+  background-color: var(--bg-dark);
+  border: solid 1px var(--bg-dark);
+  cursor: default;
+  user-select: none;
+}
+
+/* Player two dropdown */
+.player-two-heading {
+  display: inline-block;
+  position: relative;
+}
+
+.player-two-heading:hover .player-two-list {
+  display: block;
+}
+
+.player-two-heading:hover .player-two-button {
+  background-color: var(--bg-dark);
+  transition: all .3s;
+}
+
+.player-two-button {
+  height: 50px;
+  width: 160px;
+  background-color: var(--bg-dark);
+  color: var(--bg-white);
+  border: solid 1px rgba(0,0,0,.15);
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.player-two-list {
+  display: none;
+  position: absolute;
+  width: 160px;
+  background-color: #272727;
+  border: solid 1px rgba(0,0,0,.15);
+  border-top: none;
+  text-align: center;
+  z-index: 1;
+}
+
+.player-two-list h3 {
+  display: block;
+  padding: 12px 16px;
+  color: var(--bg-white);
+  text-decoration: none;
+  transition: all .3s;
+}
+
+.player-two-list h3:hover {
+  background-color: var(--bg-dark);
+  cursor: pointer;
+  transition: all .3s;
+}
+
+/* Name input */
+.player-name-label {
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.player-name {
+  width: 215px;
+  height: 50px;
+  padding: 4px 8px;
+  background-color: rgb(218, 0, 55, .1);
+  border: solid 2px rgba(0,0,0,.15);
+  border-radius: 0;
+  font-size: 22px;
+  color: var(--bg-white);
+  text-align: center;
+  outline: none;
+  transition: all .3s;
+}
+
+.player-name:focus {
+  border-color: var(--bg-dark);
+  transition: all .3s;
+}
+
+/* Appearance/marks */
+.marks,
+.appearances {
+  display: flex;
+  column-gap: 5px;
+}
+
+.mark,
+.appearance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--bg-dark);
+  border: solid 2px rgba(0,0,0);
+  font-size: 30px;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.mark:hover,
+.appearance:hover {
+  background-color: var(--bg-color);
+  border-color: var(--purple);
+  transition: all .3s;
+}
+
+.selected {
+  background-color: var(--bg-color);
+  border-color: var(--bg-dark);
+}
+
+.rotate-45 {
+  -moz-transform: rotate(-45deg) scale(-1, 1);
+  -o-transform: rotate(-45deg) scale(-1, 1);
+  -webkit-transform: rotate(-45deg) scale(-1, 1);
+  transform: rotate(-45deg) scale(-1, 1);
+}
+
+.player-one-error,
+.player-two-error {
+  display: none;
+  background-color: red;
+  margin: 16px 0 0;
+  padding: 4px 6px;
+  color: var(--bg-white);
+}
+
+.player-two-human {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-two-bot {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bot-name {
+  display: flex;
+  height: 50px;
+}
+p {
+  margin: 10px 0px;
+}
+
+
+@media screen and (max-width: 833px) {
+  .custom-player:first-child {
+    border-right: none;
+    border-bottom: solid 1px var(--bg-color);
+    padding-bottom: 16px;
+  }
+
+  .custom-player:last-child {
+    padding-top: 16px;
+    padding-left: 0;
+  }
+
+  .main {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "board board"
+      "player-one player-two"
+      "controls controls";
+  }
+
+  .player-one-section {
+    grid-area: player-one;
+    margin-right: 32px;
+    margin-top: 32px;
+  }
+
+  .player-two-section {
+    grid-area: player-two;
+    margin-top: 32px;
+    margin-left: 0;
+  }
+}
