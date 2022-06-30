@@ -183,7 +183,7 @@ body {
 
 .modal-container {
   max-width: 800px;
-  margin: 200px auto 50px;
+  margin: 170px auto 50px;
   padding: 16px;
   background-color: var(--bg-grey);
   border: solid 1px rgb(218, 0, 55);
