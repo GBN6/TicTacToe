@@ -8,6 +8,78 @@ const Player = (marker) => {
     return { getMarker };
   };
 
+const createGame = (() => {
+    // DOM elements
+    const newGameModal = document.querySelector('#new-game-modal');
+    const mainContainer = document.querySelector('.main-container');
+    const startGameButton = document.querySelector('#start-game');
+    const resetButton = document.querySelector('#reset');
+    const playerTwoHeading = document.querySelector('.player-two-button h3');
+    const playerTwoHeadingList = document.querySelectorAll('.player-two-list h3');
+    const playerOneName = document.querySelector('#player-one-name');
+    const playerTwoName = document.querySelector('#player-two-name');
+    const playerOneAppearance = document.querySelectorAll('#player-one .appearance');
+    const playerTwoAppearance = document.querySelectorAll('.player-two-human .appearance');
+    const playerOneMark = document.querySelectorAll('#player-one .mark');
+    const playerTwoMark = document.querySelectorAll('.player-two-human .mark');
+    const playerTwoHuman = document.querySelector('.player-two-human');
+    const playerTwoBot = document.querySelector('.player-two-bot');
+    
+    // DOM elements for errors
+    const playerTwoErrorMode = document.querySelector('#player-two .error-mode');
+    const playerOneErrorName = document.querySelector('#player-one .error-name');
+    const playerTwoErrorName = document.querySelector('#player-two .error-name');
+    const playerOneErrorAppearance = document.querySelector('#player-one .error-appearance');
+    const playerTwoErrorAppearance = document.querySelector('#player-two .error-appearance');
+    const playerOneErrorMark = document.querySelector('#player-one .error-mark');
+    const playerTwoErrorMark = document.querySelector('#player-two .error-mark');
+
+    // Player's sections
+    const playerOneSectionName = document.querySelector('.player-one-section .player-section-name');
+    const playerTwoSectionName = document.querySelector('.player-two-section .player-section-name');
+    const playerOneSectionAppearance = document.querySelector('.player-one-section .player-section-appearance');
+    const playerTwoSectionAppearance = document.querySelector('.player-two-section .player-section-appearance');
+    const playerOneSectionMark = document.querySelector('.player-one-section .player-section-mark');
+    const playerTwoSectionMark = document.querySelector('.player-two-section .player-section-mark');
+
+    const reset = (type) => {
+      if (type === 'hard') {
+        playerTwoHeading.textContent = 'Choose';
+        playerTwoBot.style.display = 'none';
+        playerTwoHuman.style.display = 'none';
+      }
+      playerOneName.value = '';
+      playerTwoName.value = '';
+      newPlayerTwoName = undefined;
+      newPlayerOneAppearance = undefined;
+      newPlayerTwoAppearance = undefined;
+      newPlayerOneMark = undefined;
+      newPlayerTwoMark = undefined;
+      playerOneAppearance.forEach((element) => {
+        element.classList.remove('selected');
+      });
+      playerTwoAppearance.forEach((element) => {
+        element.classList.remove('selected');
+      });
+      playerOneMark.forEach((element) => {
+        element.classList.remove('selected');
+      });
+      playerTwoMark.forEach((element) => {
+        element.classList.remove('selected');
+      });
+      playerTwoErrorMode.style.display = 'none';
+      playerOneErrorName.style.display = 'none';
+      playerTwoErrorName.style.display = 'none';
+      playerOneErrorAppearance.style.display = 'none';
+      playerTwoErrorAppearance.style.display = 'none';
+      playerOneErrorMark.style.display = 'none';
+      playerTwoErrorMark.style.display = 'none';
+    };
+})
+
+
+
+
 const gameBoard = (() => {
     const board = ["", "", "", "", "", "", "", "", ""];
 
